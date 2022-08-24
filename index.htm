@@ -1,0 +1,62 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>todo_list</title>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.0/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-gH2yIJqKdNHPEq0n4Mqa/HGKIhSkIHeL5AyhkYV8i59U5AR6csBvApHHNl/vI1Bx" crossorigin="anonymous">
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.0/dist/js/bootstrap.bundle.min.js" integrity="sha384-A3rJD856KowSb7dwlZdYEkO39Gagi7vIsF0jrRAoQmDKKtQBHUuLZ9AsSv4jD4Xa" crossorigin="anonymous"></script>
+    <script type="module">
+        import { initializeApp } from "https://www.gstatic.com/firebasejs/9.9.2/firebase-app.js";
+        import { getDatabase, ref, set, push, onValue } from "https://www.gstatic.com/firebasejs/9.9.2/firebase-database.js";
+
+        const firebaseConfig = {
+        apiKey: "AIzaSyAjEEypcrFTc6NNeOyDiS27YCKE5avgOOM",
+        authDomain: "todo-bb380.firebaseapp.com",
+        projectId: "todo-bb380",
+        storageBucket: "todo-bb380.appspot.com",
+        messagingSenderId: "398776034382",
+        appId: "1:398776034382:web:2ad3b33d2e00a0cc01cf1f"
+        };
+        const app = initializeApp(firebaseConfig);
+        const database = getDatabase(app);
+
+        submit.addEventListener('click', (e)=>{
+            set(push(ref(database, '/')), {
+                todo: document.getElementById('plan').value,
+            });
+        });
+
+        onValue(ref(database, '/'), (snapshot)=>{
+            let lis_Data
+            snapshot.forEach((childSnapshat)=>{
+                const childKey = childSnapshat.key;
+                const childData = childSnapshat.val();
+
+                console.log(childKey);
+                console.log(childData); 
+            });
+            document.getElementById('list').innHTML = lisData;
+        });
+    </script>
+
+</head>
+<body>
+    <div class="container mt-3">
+        <h3>todo_list</h3>
+        <div class="card card-body mt-1">
+            <div>
+                잠자기
+                <button type="button" class="btn btn-primary float-end">삭제</button>
+            </div>
+        </div>
+        <div id="todo_list"></div>
+        <div class="mt-2">
+            <div id="list"></div>
+            <input type="text" id="p" class="form-control" placeholder="할 일 입력">
+            <button type="submit" id="submit" class="btn btn-primary mt-1 w-100">입력하기</button>
+        </div>
+    </div>
+</body>
+</html>
