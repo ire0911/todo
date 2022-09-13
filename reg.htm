@@ -37,9 +37,14 @@
                     alert('이미 등록한 전화번호입니다.');
                 }
                 else{
+                    let today = new Date();
+
                     set(ref(database, '/'+document.getElementById('phone').value), {
                         name: document.getElementById('name').value,
                         phone: document.getElementById('phone').value,
+                        regTime: today.toLocaleString(),
+                        enterTime:'',
+                        isEnter:'0'
                 });
                 document.getElementById('name').value='';
                 document.getElementById('phone').value='';
@@ -47,6 +52,39 @@
             });
         }
         else
+        {
+            alert('전화번호 밎 이름, 개인정보 수집/이용도의을 하였는지 확인 해 주세요. ')
+        }
+    });
+      
+
+    </script>
+
+</head>
+<body>
+    <h1>송학초 음악제 참가 사전등록</h1>
+    <h2 style="color:darkgrey">송학초 음악제 입장을 위한 사전등록 페이지 입니다 아레내용을 입력해 주세요.</div></h2>
+    <h3>참가자정보</h3>
+    <input type="text" placeholder="이름" id="name">
+    <input type="text" placeholder="전화번호(000-0000-0000)" id="phone">
+    <h5>개인정보 수집 이용동의</h5><br>
+    <div>
+      <div><b>제천음악제 입장을 위한 개인정보 수집/이용동의에 대한 안네입니다.</b></div>
+      <div>
+        1. 수집목적: 제천음악제 입장관리
+      </div>
+      <div>
+        2. 수집내용: 이름, 전화번호
+      </div>
+      <div>
+        3. 수집이용기간:음악제 종료 후 5일간
+      </div>
+    </div>
+    <input type="checkbox" id="agree">
+    <label for="agree" onclick="console.log();">개인정보 수집/이용에 동의합니다.</label><br>
+    <button type="submit" id="submit">입장 사전등록</button>
+</body>
+</html>
         {
             alert('전화번호 밎 이름, 개인정보 수집/이용도의을 하였는지 확인 해 주세요. ')
         }
