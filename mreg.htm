@@ -28,11 +28,11 @@
     const database = getDatabase(app); 
     
     onValue(ref(database, '/'), (snapshot)=>{
+        document.getElementById('div_list').innerHTML ="";
         snapshot.forEach((childSnapshot)=>{
-            document.getElementById('div_list').innerHTML ="";
-
             const phone = childSnapshot.key;
             const name = childSnapshot.val().name;
+            const enterTime = childSnapshot.val().enterTime;
 
             const div = document.createElement('div');
             div.setAttribute('id',phone);
@@ -45,16 +45,40 @@
 
             const div2 = document.createElement('div');
             const div2text = document.createTextNode(phone);
-            div1.appendChild(div2text);
+            div2.appendChild(div2text);
             document.getElementById(phone).appendChild(div2);
+            
+            const div4 = document.createElement('div');
+            const div4text = document.createTextNode(phone);
+            div4.appendChild(div4text);
+            document.getElementById(phone).appendChild(div4);
+
+            let enterTimeText ="";
+            if(enterTime){
+                enterTimeText = "입장완료("+enterTime+")";
+
+            }
+            else{
+                enterTimeText ="입장전"
+            }
+
+            const div3 = document.createElement('div');
+            const div3text = document.createTextNode(enterTimeText);
+            div3.appendChild(div3text);
+            document.getElementById(phone).appendChild(div3);
+            document.getElementById(phone).setAttribute( 'style', 'color:darkgrey;')
+
+            const hr = document.createElement('hr');
+
         });
     });
     </script>
 
 </head>
 <body>
-    <h4>송학초 음악제 참가 사전등록 현황</h4>
+    <h1>송학초 음악제 참가 사전등록 현황</h1>
     <h2 style="color:darkgrey;">송학초 음악제 참가 사전등록 현황입니다.</h2>
     <div id="div_list"></div>
+    <div class=""></div>
 </body>
 </html>
