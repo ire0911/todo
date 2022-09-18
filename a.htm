@@ -1,1 +1,57 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <!-- CSS only -->
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.0-beta1/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-0evHe/X+R7YkIZDRvuzKMRqM+OrBnVFBL6DOitfPri4tjfHxaWutUpFmBp4vmVor" crossorigin="anonymous">
+    <!-- JavaScript Bundle with Popper -->
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.0-beta1/dist/js/bootstrap.bundle.min.js" integrity="sha384-pprn3073KE6tl6bjs2QrFaJGz5/SUsLqktiwsUTF55Jfv3qYSDhgCecCxMW52nD2" crossorigin="anonymous"></script>
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.8.3/font/bootstrap-icons.css">
+    <title>메모장</title>
+    <script type="module">
+        import { initializeApp } from "https://www.gstatic.com/firebasejs/9.10.0/firebase-app.js";
+        import { getDatabase, ref, set } from "https://www.gstatic.com/firebasejs/9.10.0/firebase-database.js";
 
+        const firebaseConfig = {
+          apiKey: "AIzaSyAS53PuK8NqgsmzhdtSMPMKHnBQ-wFqJxE",
+          authDomain: "aaaa-16c15.firebaseapp.com",
+          projectId: "aaaa-16c15",
+          storageBucket: "aaaa-16c15.appspot.com",
+          messagingSenderId: "553179758721",
+          appId: "1:553179758721:web:a2d9c954b81833c7514d80"
+        };
+      
+        // Initialize Firebase
+        const app = initializeApp(firebaseConfig);
+        const database = getDatabase(app);
+        // set일 때 설정//
+        /*
+        onValue(ref(database), (snapshot) => {
+            snapshot.forEach((childSnapshot)=>{
+                const childKey = childSnapshot.key;
+                const childData = childSnapshot.val();
+                document.getElementById('todo_list').innerHTML = childData;
+            })
+        });
+        */
+    </script>
+</head>
+<body>
+    <div class="container mt-5">
+        <h3>메모</h3>
+        <div id="todo_list"></div>
+        <div>
+            <div>zz</div>
+            <button>삭제</button>
+        </div>
+        <div class="mt-2">
+            <input type="text" id="plan" class="form-control" autofocus="autofocus" placeholder="메모." height="10">
+        </div>
+        <div class="mt-2">
+            <button type="submit" id="submit" class="btn btn-primary" onclick="">입력하기</button>
+        </div>
+    </div>
+</body>
+</html>
