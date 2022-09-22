@@ -27,20 +27,29 @@
         const app = initializeApp(firebaseConfig);
         const database = getDatabase(app);
         // set일 때 설정//
-        /*
-        onValue(ref(database), (snapshot) => {
+        
+        /*onValue(ref(database), (snapshot) => {
             snapshot.forEach((childSnapshot)=>{
                 const childKey = childSnapshot.key;
                 const childData = childSnapshot.val();
                 document.getElementById('todo_list').innerHTML = childData;
             })
+        });*/
+
+        submit.addEventListener('click', ()=>{
+            get(child(ref(database), '/'+document.getElementById('phone').value)).then
+            ((snapshot)=>{
+                set(ref(database, '/'+document.getElementById('plan').value), {
+                plan: document.getElementById('plan').value;
+                document.getElementById('plan').value='';
+            });
         });
-        */
+        
     </script>
 </head>
 <body>
     <div class="container mt-5">
-        <h3>메모</h3>
+        <h3></h3>
         <div id="todo_list"></div>
         <div>
             <div>zz</div>
